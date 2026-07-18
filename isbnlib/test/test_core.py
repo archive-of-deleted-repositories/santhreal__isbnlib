@@ -30,6 +30,9 @@ def test_check_digit10():
     assert check_digit10('585270001') == '0'
     assert check_digit10('08264975X') == ''
     assert check_digit10('08264975') == ''
+    # int() accepts whitespace-padded length-9 strings; must not ValueError
+    assert check_digit10('15397966 ') == ''
+    assert check_digit10('08264975\n') == ''
 
 
 def test_check_digit13():
@@ -37,6 +40,8 @@ def test_check_digit13():
     assert check_digit13('978082649752') == '9'
     assert check_digit13('97808264975') == ''
     assert check_digit13('97808264975X') == ''
+    assert check_digit13('  5978979978') == ''
+    assert check_digit13('5978979978  ') == ''
 
 
 def test__check_structure10():

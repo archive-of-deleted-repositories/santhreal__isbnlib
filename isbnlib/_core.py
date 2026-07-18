@@ -52,12 +52,8 @@ LEGAL = '0123456789xXisbnISBN- '
 
 def check_digit10(firstninedigits):
     """Check sum ISBN-10."""
-    # minimum checks
-    if len(firstninedigits) != 9:
-        return ''
-    try:
-        int(firstninedigits)
-    except ValueError:  # pragma: no cover
+    # minimum checks (isdigit: int() accepts whitespace that later crashes)
+    if len(firstninedigits) != 9 or not firstninedigits.isdigit():
         return ''
     # checksum
     val = sum(
@@ -74,12 +70,8 @@ def check_digit10(firstninedigits):
 
 def check_digit13(firsttwelvedigits):
     """Check sum ISBN-13."""
-    # minimum checks
-    if len(firsttwelvedigits) != 12:
-        return ''
-    try:
-        int(firsttwelvedigits)
-    except ValueError:  # pragma: no cover
+    # minimum checks (isdigit: int() accepts whitespace that later crashes)
+    if len(firsttwelvedigits) != 12 or not firsttwelvedigits.isdigit():
         return ''
     # checksum
     val = sum(
