@@ -30,6 +30,9 @@ def test_mask():
     assert mask('0-330284983') == '0-330-28498-3'
     assert mask('9791090636071') == '979-10-90636-07-1'
     assert mask('9798847781275') == '979-8-8477-8127-5'  # <-- issue #114
+    # idx=0 registrant length must not insert an empty hyphen segment
+    assert mask('9791234567896') == '979-12-3456789-6'
+    assert mask('9798150616226') == '979-8-15061622-6'
     assert mask('9786131796364') == '978-613-1-79636-4'  # <-- prefix with 1 rule
     assert mask('isbn 979-10-90636-07-1') == '979-10-90636-07-1'
     assert mask('') == ''

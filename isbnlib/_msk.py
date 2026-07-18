@@ -58,7 +58,11 @@ def msk(isbn, separator='-'):
         if isbn10:
             group = group[4:]
             check = check10
-        return separator.join(
-            [group, ib[cur + 1:cur + idx + 1], ib[cur + idx + 1:-1], check])
+        # idx=0 means empty registrant; omit that segment (avoid "--")
+        parts = [group]
+        if idx:
+            parts.append(ib[cur + 1:cur + idx + 1])
+        parts.extend([ib[cur + idx + 1:-1], check])
+        return separator.join(parts)
     LOGGER.warning('identifier not found!')  # pragma: no cover
     return ''  # pragma: no cover
