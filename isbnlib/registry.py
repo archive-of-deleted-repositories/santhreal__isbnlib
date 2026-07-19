@@ -77,7 +77,7 @@ def setdefaultbibformatter(name):
 def add_bibformatter(name, formatter):  # pragma: no cover
     """Add a new formatter to formatters."""
     global bibformatters
-    bibformatters[name] = formatter.lower()
+    bibformatters[name.lower()] = formatter
 
 
 # pylint: disable=broad-except
