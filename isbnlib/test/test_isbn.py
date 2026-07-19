@@ -41,6 +41,14 @@ def test_errors():
     with pytest.raises(Exception):
         Isbn('781250158062')
 
+
+def test_null_isbn10_ean13():
+    """ISBN-13 that maps to null ISBN-10 must still construct."""
+    isbn = Isbn('9780000000002')
+    assert isbn.ean13 == '9780000000002'
+    assert isbn.isbn10 == ''
+    assert isbn.isbn13 == '978-0-00-000000-2'
+
 def test_str():
     """Test the 'Isbn class' for 'str'."""
     assert (len(str(isbn)) > 20) ==  True

@@ -129,7 +129,9 @@ def to_isbn10(isbn13):
     isbn10 = isbn13[3:]
     check = check_digit10(isbn10[:-1])
     # Change check digit
-    return isbn10[:-1] + check if check else ''
+    out = isbn10[:-1] + check if check else ''
+    # Null ISBN-10 (all zeros) is rejected by canonical/is_isbn10
+    return out if out and canonical(out) else ''
 
 
 def to_isbn13(isbn10):

@@ -83,6 +83,8 @@ def test_to_isbn10():
     assert to_isbn10('isbn 979-10-90636-07-1') == ''
     assert to_isbn10('isbn 978-0-8264-9752-9') == '0826497527'
     assert to_isbn10('asdadv isbn 978-0-8264-9752-9') == '0826497527'
+    # checksum-valid ISBN-13 whose ISBN-10 is the null id rejected by canonical
+    assert to_isbn10('9780000000002') == ''
 
 
 def test_to_isbn13():
